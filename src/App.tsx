@@ -14,7 +14,6 @@ const WHATSAPP_GROUP_URL =
 
 export default function App() {
   const [copied, setCopied] = useState(false);
-  const [zoomModalOpen, setZoomModalOpen] = useState(false);
 
   const handleJoinWhatsApp = () => {
     playLuckyChime();
@@ -52,7 +51,7 @@ export default function App() {
           </span>
           <span className="text-neutral-600 text-xs" aria-hidden="true">·</span>
           <span className="text-[11px] font-bold text-amber-400 uppercase tracking-wider">
-            Rifa Oficial
+            RIFA NO GRUPO WHATSAPP
           </span>
         </div>
       </header>
@@ -60,56 +59,34 @@ export default function App() {
       {/* Main Pressell Body */}
       <main className="relative z-10 max-w-lg mx-auto w-full px-4 py-3 sm:py-5 flex flex-col items-center text-center my-auto">
         
-        {/* Floating Cartela Card with 3D levitation motion */}
+        {/* Floating Cartela Card with 3D levitation motion - Entire Image without Cuts */}
         <motion.div
-          className="relative mb-5 cursor-pointer group"
+          className="relative mb-5 cursor-pointer group w-full max-w-[320px] sm:max-w-[360px]"
           animate={{
             y: [0, -12, 0],
-            rotate: [-1.2, 1.2, -1.2],
+            rotate: [-1, 1, -1],
           }}
           transition={{
             duration: 5,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
+          onClick={handleJoinWhatsApp}
+          title="Toque para entrar no grupo do WhatsApp"
         >
           {/* Intense glowing backdrop behind the card */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/40 via-emerald-500/35 to-amber-600/35 rounded-2xl blur-xl transform scale-105 group-hover:scale-115 transition-transform duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/35 via-emerald-500/30 to-amber-600/35 rounded-2xl blur-xl transform scale-105 group-hover:scale-110 transition-transform duration-500" />
 
-          {/* Floating Card Frame */}
-          <div className="relative w-64 sm:w-72 aspect-[2/3] rounded-2xl p-2 bg-gradient-to-b from-amber-400/40 via-neutral-900 to-amber-500/30 border-2 border-amber-400/60 shadow-[0_15px_45px_rgba(245,158,11,0.35)] backdrop-blur-md overflow-hidden transform group-hover:scale-102 transition-all duration-300">
+          {/* Floating Card Frame showing the complete, uncut poster */}
+          <div className="relative rounded-2xl p-2 bg-gradient-to-b from-amber-400/50 via-neutral-900 to-amber-500/40 border-2 border-amber-400/70 shadow-[0_15px_45px_rgba(245,158,11,0.35)] backdrop-blur-md overflow-hidden transform group-hover:scale-102 transition-all duration-300">
             
-            {/* Top Bar of Cartela Card */}
-            <div className="flex items-center justify-between px-2 py-1 mb-1 text-[11px] font-mono border-b border-amber-400/20 bg-neutral-950/70 rounded-t-xl">
-              <span className="text-emerald-400 font-bold flex items-center gap-1">
-                <span>🍀</span> 00 A 99
-              </span>
-              <span className="text-amber-300 font-extrabold bg-amber-500/20 border border-amber-400/30 px-1.5 py-0.5 rounded text-[10px]">
-                R$ 3,00 CADA
-              </span>
-            </div>
-
-            {/* User Uploaded Image Slot */}
-            <div
-              className="relative w-full h-[85%] rounded-xl overflow-hidden border border-amber-400/30 bg-neutral-950"
-              onClick={() => setZoomModalOpen(true)}
-              title="Toque para ampliar a cartela"
-            >
+            {/* Complete, uncut poster image */}
+            <div className="relative w-full rounded-xl overflow-hidden border border-amber-400/40 bg-neutral-950 shadow-inner">
               <img
                 src="/assets/aistudio/WhatsApp_Image_2026-11-06_at_5.02.34_PM_1e64f292.jpeg"
-                alt="Rifa Especial - Concorra a essa Super Furadeira 48V Completa por apenas R$ 3,00"
-                className="w-full h-full object-cover object-top"
+                alt="Rifa Especial - Concorra a essa Super Furadeira 48V Completa por apenas R$ 3,00 - Cartela 00 a 99"
+                className="w-full h-auto block object-contain"
               />
-
-              {/* Tap to expand hint */}
-              <div className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-neutral-950/80 border border-amber-400/30 text-[10px] text-amber-300 font-semibold backdrop-blur-sm flex items-center gap-1">
-                <span>🔍</span> Ver Completa
-              </div>
-            </div>
-
-            {/* Micro instruction */}
-            <div className="mt-1 text-center text-[10px] text-neutral-400 font-medium">
-              Toque na cartela para ampliar ou no botão abaixo para entrar
             </div>
           </div>
         </motion.div>
@@ -181,51 +158,6 @@ export default function App() {
         </div>
 
       </main>
-
-      {/* Modal to view complete high-res cartela image */}
-      {zoomModalOpen && (
-        <div
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
-          onClick={() => setZoomModalOpen(false)}
-        >
-          <div
-            className="relative max-w-md w-full rounded-2xl bg-neutral-900 border border-amber-400/40 p-3 shadow-2xl overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between pb-2 mb-2 border-b border-neutral-800 text-xs">
-              <span className="font-bold text-white flex items-center gap-1.5">
-                <span>🍀</span> Cartela Rifa Especial (00 a 99)
-              </span>
-              <button
-                onClick={() => setZoomModalOpen(false)}
-                className="text-neutral-400 hover:text-white text-lg font-bold px-2 py-0.5 rounded bg-neutral-800"
-              >
-                ✕
-              </button>
-            </div>
-
-            <div className="max-h-[75vh] overflow-y-auto rounded-xl">
-              <img
-                src="/assets/aistudio/WhatsApp_Image_2026-11-06_at_5.02.34_PM_1e64f292.jpeg"
-                alt="Cartela completa Super Furadeira 48V"
-                className="w-full h-auto object-contain rounded-lg"
-              />
-            </div>
-
-            <div className="mt-3">
-              <button
-                onClick={() => {
-                  setZoomModalOpen(false);
-                  handleJoinWhatsApp();
-                }}
-                className="w-full py-3 text-sm font-black text-neutral-950 bg-gradient-to-r from-emerald-400 to-amber-300 rounded-xl hover:brightness-110 shadow-lg cursor-pointer"
-              >
-                Garantir Meus Números no WhatsApp →
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Minimal Footer */}
       <footer className="relative z-10 py-3 px-4 text-center text-[11px] text-neutral-500 border-t border-neutral-900">
