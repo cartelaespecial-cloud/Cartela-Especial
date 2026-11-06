@@ -1,6 +1,6 @@
 {
-  "name": "Cartelas Especial - Rifas com Sorteio pela Loteria Federal",
-  "description": "Participe do grupo oficial de WhatsApp da Cartelas Especial. Rifas e cartelas de 00 a 99 com resultado 100% transparente pela Loteria Federal e prêmios incríveis.",
+  "name": "",
+  "description": "",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
