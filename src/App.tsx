@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import confetti from 'canvas-confetti';
 import { CloverParticles } from './components/CloverParticles';
@@ -12,8 +12,48 @@ import { playLuckyChime } from './utils/audio';
 const WHATSAPP_GROUP_URL =
   'https://chat.whatsapp.com/IKmfvq14rNy7woxeibYQGa?s=sw&p=i&mlu=4&ilr=4&iam=2';
 
+// Helper to check if current route is /grupo
+function isGrupoRoute(): boolean {
+  if (typeof window === 'undefined') return false;
+  const path = window.location.pathname.toLowerCase();
+  return path === '/grupo' || path.startsWith('/grupo/');
+}
+
 export default function App() {
+  const [isGrupo, setIsGrupo] = useState(() => isGrupoRoute());
   const [copied, setCopied] = useState(false);
+
+  // Handle route change listener (e.g. back/forward navigation)
+  useEffect(() => {
+    const handlePopState = () => {
+      setIsGrupo(isGrupoRoute());
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // When on /grupo, fire the Kwai Pixel and redirect to WhatsApp
+  useEffect(() => {
+    if (isGrupo) {
+      // Trigger Kwai Pixel page/track event if available
+      try {
+        const win = window as unknown as { kwaiq?: { page: () => void; track: (event: string) => void } };
+        if (win.kwaiq) {
+          win.kwaiq.page();
+          win.kwaiq.track('contentView');
+        }
+      } catch {
+        // ignore
+      }
+
+      // Small delay so the pixel beacon fires before leaving the page
+      const timer = setTimeout(() => {
+        window.location.href = WHATSAPP_GROUP_URL;
+      }, 700);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isGrupo]);
 
   const handleJoinWhatsApp = () => {
     playLuckyChime();
@@ -23,7 +63,14 @@ export default function App() {
       origin: { y: 0.6 },
       colors: ['#10B981', '#F59E0B', '#34D399', '#FBBF24', '#FFFFFF'],
     });
-    window.open(WHATSAPP_GROUP_URL, '_blank', 'noopener,noreferrer');
+
+    // Navigate to /grupo as requested by the user
+    try {
+      window.history.pushState({}, '', '/grupo');
+      setIsGrupo(true);
+    } catch {
+      window.location.href = '/grupo';
+    }
   };
 
   const handleCopyLink = async () => {
@@ -37,6 +84,63 @@ export default function App() {
     }
   };
 
+  // If on /grupo route: render the official redirect screen
+  if (isGrupo) {
+    return (
+      <div className="relative min-h-screen bg-neutral-950 text-neutral-100 flex flex-col justify-between font-sans overflow-x-hidden selection:bg-emerald-500 selection:text-white">
+        <CloverParticles />
+
+        <header className="relative z-10 pt-6 pb-2 px-4 text-center">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-900/90 border border-neutral-800 shadow-lg backdrop-blur-md">
+            <span className="text-emerald-400 text-sm">🍀</span>
+            <span className="font-display font-extrabold text-sm sm:text-base tracking-tight text-white">
+              Cartelas <span className="gold-gradient-text font-black">Especial</span>
+            </span>
+            <span className="text-neutral-600 text-xs" aria-hidden="true">·</span>
+            <span className="text-[11px] font-bold text-amber-400 uppercase tracking-wider">
+              RIFA NO GRUPO WHATSAPP
+            </span>
+          </div>
+        </header>
+
+        <main className="relative z-10 max-w-md mx-auto w-full px-4 py-8 flex flex-col items-center text-center my-auto">
+          {/* Animated Spinner with Clover */}
+          <div className="relative mb-6">
+            <div className="w-20 h-20 rounded-full border-4 border-neutral-800 border-t-emerald-400 animate-spin" />
+            <div className="absolute inset-0 flex items-center justify-center text-2xl animate-pulse">
+              🍀
+            </div>
+          </div>
+
+          <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight text-white leading-tight mb-2">
+            Redirecionando para o <span className="emerald-gradient-text">WhatsApp</span>...
+          </h1>
+
+          <p className="text-sm text-neutral-300 max-w-xs mx-auto leading-relaxed mb-6">
+            Você está sendo encaminhado para o grupo oficial da <strong>Cartelas Especial</strong>.
+          </p>
+
+          <a
+            href={WHATSAPP_GROUP_URL}
+            className="w-full inline-flex items-center justify-center gap-3 px-6 py-3.5 text-sm font-bold text-neutral-950 bg-gradient-to-r from-emerald-400 via-emerald-300 to-amber-300 rounded-xl hover:brightness-110 shadow-[0_0_25px_rgba(16,185,129,0.4)] transition-all cursor-pointer"
+          >
+            <span>Entrar Agora Manualmente</span>
+            <span>→</span>
+          </a>
+
+          <p className="text-[11px] text-neutral-500 mt-4">
+            Caso o aplicativo não abra automaticamente, toque no botão acima.
+          </p>
+        </main>
+
+        <footer className="relative z-10 py-3 px-4 text-center text-[11px] text-neutral-500 border-t border-neutral-900">
+          <p>Cartelas Especial · Resultados pela Loteria Federal · 18+</p>
+        </footer>
+      </div>
+    );
+  }
+
+  // Default Home / Pressell Route
   return (
     <div className="relative min-h-screen bg-neutral-950 text-neutral-100 flex flex-col justify-between font-sans overflow-x-hidden selection:bg-emerald-500 selection:text-white">
       {/* Ambient background clovers and sparkles */}
