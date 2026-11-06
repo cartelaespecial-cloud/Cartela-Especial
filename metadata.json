@@ -1,6 +1,6 @@
 {
-  "name": "Cartelas Especiais - Grupo Oficial",
-  "description": "Participe da comunidade oficial Cartelas Especiais no WhatsApp e tenha acesso exclusivo.",
+  "name": "Cartelas Especiais - Comunidade Oficial",
+  "description": "Venha fazer parte da comunidade Cartelas Especiais e acompanhe nossas novidades pelo WhatsApp.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

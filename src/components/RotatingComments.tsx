@@ -1,199 +1,114 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
-interface Comment {
+interface FeedbackItem {
   id: number;
-  name: string;
-  city: string;
-  time: string;
-  avatarBg: string;
+  author: string;
+  location: string;
   initials: string;
-  rating: number;
+  topic: string;
   text: string;
 }
 
-const COMMENTS: Comment[] = [
+const COMMUNITY_FEEDBACK: FeedbackItem[] = [
   {
     id: 1,
-    name: 'Lucas Moreira',
-    city: 'São Paulo - SP',
-    time: 'há 6 minutos',
-    avatarBg: 'from-emerald-500 to-teal-700',
-    initials: 'LM',
-    rating: 5,
-    text: 'Eu gosto muito desse grupo! Atendimento nota 10 dos administradores e tudo super transparente. Já garanti minhas cartelas da semana!',
+    author: 'Mariana C.',
+    location: 'Belo Horizonte - MG',
+    initials: 'MC',
+    topic: 'Organização do Grupo',
+    text: 'O grupo é muito bem estruturado e organizado. As informações sobre as regras e o andamento das cartelas são atualizadas de forma clara para todo mundo.',
   },
   {
     id: 2,
-    name: 'Camila Santos',
-    city: 'Belo Horizonte - MG',
-    time: 'há 18 minutos',
-    avatarBg: 'from-amber-500 to-orange-600',
-    initials: 'CS',
-    rating: 5,
-    text: 'Melhor grupo do WhatsApp sem dúvidas! A lista atualizada em tempo real passa muita confiança pra gente conferir tudo certinho.',
+    author: 'Thiago R.',
+    location: 'São Paulo - SP',
+    initials: 'TR',
+    topic: 'Transparência nas Informações',
+    text: 'A facilidade para acompanhar as atualizações pelo WhatsApp é excelente. Os administradores respondem rápido e tiram todas as dúvidas com atenção.',
   },
   {
     id: 3,
-    name: 'Rafael Barbosa',
-    city: 'Curitiba - PR',
-    time: 'há 32 minutos',
-    avatarBg: 'from-blue-500 to-indigo-700',
-    initials: 'RB',
-    rating: 5,
-    text: 'Peguei minha cota de R$ 3,00 na furadeira e o PIX caiu na minha conta no mesmo dia. Pessoal honesto demais, recomendo de olhos fechados!',
-  },
-  {
-    id: 4,
-    name: 'Juliana Ferreira',
-    city: 'Goiânia - GO',
-    time: 'há 45 minutos',
-    avatarBg: 'from-rose-500 to-pink-700',
-    initials: 'JF',
-    rating: 5,
-    text: 'Comunidade muito top e organizada! Todo mundo se ajuda no grupo e a administração é super rápida para responder e confirmar as cotas.',
-  },
-  {
-    id: 5,
-    name: 'Diego Ribeiro',
-    city: 'Campinas - SP',
-    time: 'há 1 hora',
-    avatarBg: 'from-purple-500 to-indigo-800',
-    initials: 'DR',
-    rating: 5,
-    text: 'Entrei por indicação de um colega de trabalho semana passada e já virei membro fiel. Muito fácil participar e muito seguro!',
-  },
-  {
-    id: 6,
-    name: 'Marcos Vinicius',
-    city: 'Rio de Janeiro - RJ',
-    time: 'há 2 horas',
-    avatarBg: 'from-yellow-500 to-amber-700',
-    initials: 'MV',
-    rating: 5,
-    text: 'Já participei de vários grupos mas esse aqui é diferenciado no respeito e agilidade. Parabéns a toda equipe do Cartelas Especiais!',
+    author: 'Felipe M.',
+    location: 'Curitiba - PR',
+    initials: 'FM',
+    topic: 'Experiência na Comunidade',
+    text: 'Ambiente respeitoso e dinâmico. Participo com tranquilidade porque as listas são públicas no grupo e tudo é conferido de forma transparente.',
   },
 ];
 
 export const RotatingComments: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto-advance comments every 4 seconds
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % COMMENTS.length);
-    }, 4200);
+      setCurrentIndex((prev) => (prev + 1) % COMMUNITY_FEEDBACK.length);
+    }, 4500);
     return () => clearInterval(timer);
   }, []);
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + COMMENTS.length) % COMMENTS.length);
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % COMMENTS.length);
-  };
-
-  const currentComment = COMMENTS[currentIndex];
+  const current = COMMUNITY_FEEDBACK[currentIndex];
 
   return (
-    <div className="w-full max-w-sm mt-6 text-left">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-2.5 px-1">
-        <div className="flex items-center gap-1.5 text-xs font-bold text-white">
-          <span className="text-amber-400">💬</span>
-          <span>O que os membros dizem no grupo:</span>
-        </div>
-        <div className="flex items-center gap-1 text-[11px] text-neutral-400">
-          <span className="text-emerald-400 font-bold">4.9/5</span>
-          <span>(850+ membros)</span>
-        </div>
+    <section className="w-full max-w-sm text-left my-2">
+      <div className="flex items-center justify-between mb-2 px-1">
+        <span className="text-xs font-bold text-white flex items-center gap-1.5">
+          <span>💬</span>
+          <span>Experiência dos Participantes</span>
+        </span>
+        <span className="text-[10px] text-emerald-400 font-semibold bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
+          Comunidade Ativa
+        </span>
       </div>
 
-      {/* Rotating Card */}
-      <div className="relative rounded-2xl bg-neutral-900/80 border border-neutral-800/90 p-4 shadow-xl backdrop-blur-md overflow-hidden min-h-[140px] flex flex-col justify-between">
-        
-        {/* Glow accent */}
-        <div className="absolute -top-10 -right-10 w-24 h-24 bg-amber-500/10 rounded-full blur-xl pointer-events-none" />
-
+      <div className="relative rounded-2xl bg-neutral-900/85 border border-neutral-800 p-4 shadow-lg backdrop-blur-md overflow-hidden min-h-[130px] flex flex-col justify-between">
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentComment.id}
-            initial={{ opacity: 0, y: 12 }}
+            key={current.id}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.35, ease: 'easeOut' }}
-            className="space-y-2.5"
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            className="space-y-2"
           >
-            {/* User row */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
-                <div
-                  className={`w-9 h-9 rounded-full bg-gradient-to-tr ${currentComment.avatarBg} flex items-center justify-center font-bold text-xs text-white shadow-sm shrink-0`}
-                >
-                  {currentComment.initials}
+                <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-bold text-xs flex items-center justify-center shrink-0">
+                  {current.initials}
                 </div>
                 <div>
-                  <div className="flex items-center gap-1.5 leading-tight">
-                    <span className="text-xs font-bold text-white">{currentComment.name}</span>
-                    <span className="text-[10px] text-emerald-400 font-medium bg-emerald-500/15 border border-emerald-500/30 px-1 rounded">
-                      ✓ Verificado
-                    </span>
+                  <div className="text-xs font-bold text-white leading-tight">
+                    {current.author}
                   </div>
-                  <div className="text-[10px] text-neutral-400">{currentComment.city}</div>
+                  <div className="text-[10px] text-neutral-400">{current.location}</div>
                 </div>
               </div>
 
-              {/* Time & Stars */}
-              <div className="text-right">
-                <div className="text-amber-400 text-xs tracking-tighter">
-                  {'★'.repeat(currentComment.rating)}
-                </div>
-                <div className="text-[10px] text-neutral-500 font-mono">{currentComment.time}</div>
-              </div>
+              <span className="text-[10px] font-medium text-amber-300/90 bg-amber-400/10 border border-amber-400/20 px-2 py-0.5 rounded-md">
+                {current.topic}
+              </span>
             </div>
 
-            {/* Comment Text */}
-            <p className="text-xs text-neutral-200 leading-relaxed italic">
-              "{currentComment.text}"
+            <p className="text-xs text-neutral-300 leading-relaxed italic">
+              "{current.text}"
             </p>
           </motion.div>
         </AnimatePresence>
 
-        {/* Carousel Indicators and Controls */}
-        <div className="flex items-center justify-between pt-2 mt-2 border-t border-neutral-800/60">
-          <div className="flex items-center gap-1.5">
-            {COMMENTS.map((c, i) => (
-              <button
-                key={c.id}
-                onClick={() => setCurrentIndex(i)}
-                className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                  i === currentIndex ? 'w-5 bg-amber-400' : 'w-1.5 bg-neutral-700 hover:bg-neutral-500'
-                }`}
-                aria-label={`Ver comentário ${i + 1}`}
-              />
-            ))}
-          </div>
-
-          <div className="flex items-center gap-1">
+        {/* Indicator dots */}
+        <div className="flex items-center justify-center gap-1.5 pt-2 mt-2 border-t border-neutral-800/60">
+          {COMMUNITY_FEEDBACK.map((item, idx) => (
             <button
-              onClick={handlePrev}
-              className="w-6 h-6 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 text-xs flex items-center justify-center transition-colors cursor-pointer"
-              aria-label="Comentário anterior"
-            >
-              ‹
-            </button>
-            <button
-              onClick={handleNext}
-              className="w-6 h-6 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 text-xs flex items-center justify-center transition-colors cursor-pointer"
-              aria-label="Próximo comentário"
-            >
-              ›
-            </button>
-          </div>
+              key={item.id}
+              onClick={() => setCurrentIndex(idx)}
+              className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                idx === currentIndex ? 'w-5 bg-emerald-400' : 'w-1.5 bg-neutral-700 hover:bg-neutral-500'
+              }`}
+              aria-label={`Ver avaliação ${idx + 1}`}
+            />
+          ))}
         </div>
-
       </div>
-    </div>
+    </section>
   );
 };
