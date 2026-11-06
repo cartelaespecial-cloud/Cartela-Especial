@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "description": "",
+  "name": "Cartelas Especial - Rifa da Super Furadeira",
+  "description": "Participe do grupo oficial de WhatsApp da Cartelas Especial. Rifa de 00 a 99 por apenas R$ 3,00 com resultado pela Loteria Federal.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
