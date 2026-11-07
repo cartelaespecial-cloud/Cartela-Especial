@@ -15,7 +15,7 @@ const WHATSAPP_GROUP_URL =
   'https://chat.whatsapp.com/IKmfvq14rNy7woxeibYQGa?s=sw&p=i&mlu=4&ilr=4&iam=2';
 
 const HERO_IMAGE_URL =
-  '/assets/aistudio/Entre_no_Grupo_WhatsApp_8cd73d65.png';
+  '/assets/aistudio/Entre_na_Comunidade_Cartelas_Especiais_e8aebe05.png';
 
 // Helper to check if current route is /grupo
 function isGrupoRoute(): boolean {
