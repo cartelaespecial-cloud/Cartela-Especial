@@ -17,15 +17,15 @@ const COMMUNITY_FEEDBACK: FeedbackItem[] = [
     location: 'Belo Horizonte - MG',
     initials: 'MC',
     topic: 'Organização do Grupo',
-    text: 'O grupo é muito bem estruturado e organizado. As informações sobre as regras e o andamento das cartelas são atualizadas de forma clara para todo mundo.',
+    text: 'Eu gosto muito desse grupo! Muito bem organizado e os administradores sempre tiram dúvidas com respeito e rapidez.',
   },
   {
     id: 2,
     author: 'Thiago R.',
     location: 'São Paulo - SP',
     initials: 'TR',
-    topic: 'Transparência nas Informações',
-    text: 'A facilidade para acompanhar as atualizações pelo WhatsApp é excelente. Os administradores respondem rápido e tiram todas as dúvidas com atenção.',
+    topic: 'Ambiente no WhatsApp',
+    text: 'Muito fácil acompanhar todas as mensagens e novidades pelo WhatsApp. Não tem spam e a comunidade é nota 10!',
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const COMMUNITY_FEEDBACK: FeedbackItem[] = [
     location: 'Curitiba - PR',
     initials: 'FM',
     topic: 'Experiência na Comunidade',
-    text: 'Ambiente respeitoso e dinâmico. Participo com tranquilidade porque as listas são públicas no grupo e tudo é conferido de forma transparente.',
+    text: 'Ambiente respeitoso e super acolhedor. Adoro participar das conversas e acompanhar as novidades no grupo oficial.',
   },
 ];
 
@@ -54,14 +54,14 @@ export const RotatingComments: React.FC = () => {
       <div className="flex items-center justify-between mb-2 px-1">
         <span className="text-xs font-bold text-white flex items-center gap-1.5">
           <span>💬</span>
-          <span>Experiência dos Participantes</span>
+          <span>Depoimentos dos Participantes</span>
         </span>
         <span className="text-[10px] text-emerald-400 font-semibold bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
           Comunidade Ativa
         </span>
       </div>
 
-      <div className="relative rounded-2xl bg-neutral-900/85 border border-neutral-800 p-4 shadow-lg backdrop-blur-md overflow-hidden min-h-[130px] flex flex-col justify-between">
+      <div className="relative rounded-2xl bg-neutral-900/85 border border-neutral-800 p-4 shadow-lg backdrop-blur-md overflow-hidden min-h-[125px] flex flex-col justify-between">
         <AnimatePresence mode="wait">
           <motion.div
             key={current.id}
@@ -84,7 +84,7 @@ export const RotatingComments: React.FC = () => {
                 </div>
               </div>
 
-              <span className="text-[10px] font-medium text-amber-300/90 bg-amber-400/10 border border-amber-400/20 px-2 py-0.5 rounded-md">
+              <span className="text-[10px] font-medium text-emerald-300/90 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-md">
                 {current.topic}
               </span>
             </div>
@@ -104,7 +104,7 @@ export const RotatingComments: React.FC = () => {
               className={`h-1.5 rounded-full transition-all cursor-pointer ${
                 idx === currentIndex ? 'w-5 bg-emerald-400' : 'w-1.5 bg-neutral-700 hover:bg-neutral-500'
               }`}
-              aria-label={`Ver avaliação ${idx + 1}`}
+              aria-label={`Ver depoimento ${idx + 1}`}
             />
           ))}
         </div>

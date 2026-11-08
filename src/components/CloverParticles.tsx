@@ -3,8 +3,7 @@ import { motion } from 'motion/react';
 
 interface Particle {
   id: number;
-  type: 'clover' | 'number' | 'sparkle';
-  value?: string;
+  type: 'clover' | 'sparkle';
   x: number;
   y: number;
   size: number;
@@ -15,7 +14,6 @@ interface Particle {
 
 export const CloverParticles: React.FC = () => {
   const particles: Particle[] = useMemo(() => {
-    const luckyNumbers = ['07', '13', '21', '33', '55', '77', '88', '99', '00'];
     const items: Particle[] = [];
 
     // Ambient floating 4-leaf clovers
@@ -32,29 +30,14 @@ export const CloverParticles: React.FC = () => {
       });
     }
 
-    // Floating lucky numbers
-    for (let i = 0; i < 8; i++) {
+    // Floating gold sparkles
+    for (let i = 0; i < 22; i++) {
       items.push({
         id: 20 + i,
-        type: 'number',
-        value: luckyNumbers[i % luckyNumbers.length],
-        x: Math.floor(Math.random() * 90) + 5,
-        y: Math.floor(Math.random() * 90) + 5,
-        size: Math.floor(Math.random() * 6) + 13,
-        duration: Math.random() * 10 + 12,
-        delay: Math.random() * 5,
-        rotate: Math.random() * 30 - 15,
-      });
-    }
-
-    // Sparkles
-    for (let i = 0; i < 16; i++) {
-      items.push({
-        id: 40 + i,
         type: 'sparkle',
         x: Math.floor(Math.random() * 96),
         y: Math.floor(Math.random() * 100),
-        size: Math.floor(Math.random() * 8) + 4,
+        size: Math.floor(Math.random() * 7) + 3,
         duration: Math.random() * 4 + 3,
         delay: Math.random() * 3,
         rotate: 0,
@@ -100,37 +83,10 @@ export const CloverParticles: React.FC = () => {
           );
         }
 
-        if (p.type === 'number') {
-          return (
-            <motion.div
-              key={p.id}
-              className="absolute font-mono font-bold text-amber-300/35 select-none border border-amber-400/25 rounded-full px-2 py-0.5 backdrop-blur-[1px]"
-              style={{
-                left: `${p.x}%`,
-                top: `${p.y}%`,
-                fontSize: `${p.size}px`,
-              }}
-              animate={{
-                y: [0, -40, 0],
-                rotate: [p.rotate, p.rotate + 10, p.rotate - 10, p.rotate],
-                opacity: [0.25, 0.55, 0.25],
-              }}
-              transition={{
-                duration: p.duration,
-                repeat: Infinity,
-                delay: p.delay,
-                ease: 'easeInOut',
-              }}
-            >
-              {p.value}
-            </motion.div>
-          );
-        }
-
         return (
           <motion.div
             key={p.id}
-            className="absolute rounded-full bg-amber-300/45"
+            className="absolute rounded-full bg-amber-300/45 shadow-[0_0_8px_rgba(251,191,36,0.6)]"
             style={{
               left: `${p.x}%`,
               top: `${p.y}%`,

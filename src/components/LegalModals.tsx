@@ -34,34 +34,34 @@ export const LegalModal: React.FC<LegalModalProps> = ({ type, onClose }) => {
           {type === 'terms' ? (
             <>
               <p>
-                <strong>1. Sobre a Comunidade:</strong> A <strong>Cartelas Especiais</strong> é uma comunidade organizada via grupo de WhatsApp destinada ao entretenimento, relacionamento e divulgação de rodadas de cartelas numeradas entre participantes cadastrados.
+                <strong>1. Sobre a Comunidade:</strong> Esta página é um canal de acesso à nossa comunidade oficial no WhatsApp, criada exclusivamente para interação, convivência e compartilhamento de novidades e avisos entre os participantes.
               </p>
               <p>
-                <strong>2. Acesso ao Grupo:</strong> O acesso ao grupo de WhatsApp é facultativo e gratuito. O participante deve ser maior de 18 (dezoito) anos e concordar em manter uma conduta respeitosa com todos os membros e administradores.
+                <strong>2. Acesso Gratuito e Livre:</strong> O acesso ao grupo de WhatsApp é 100% gratuito e voluntário. Qualquer participante pode entrar ou sair do grupo quando desejar, sem custos ou obrigações.
               </p>
               <p>
-                <strong>3. Participação em Cartelas:</strong> A adesão a cartelas específicas ocorre de forma voluntária e pode envolver custos por cota informados previamente no grupo. A aquisição de cotas confere direito exclusivo à participação nas regras pré-estabelecidas e divulgadas no grupo, não constituindo compra direta, entrega garantida ou venda de produtos comerciais.
+                <strong>3. Regras de Convivência:</strong> É fundamental manter um ambiente respeitoso, ético e cordial. É proibido qualquer tipo de ofensa, preconceito, spam ou mensagens inadequadas no grupo.
               </p>
               <p>
-                <strong>4. Transparência:</strong> Todas as informações, listas de cotas e andamentos são compartilhados publicamente dentro do grupo oficial para livre conferência dos membros.
+                <strong>4. Maioridade:</strong> A participação na comunidade é recomendada para maiores de 18 anos.
               </p>
               <p>
-                <strong>5. Contato:</strong> Dúvidas podem ser esclarecidas diretamente com a administração através do e-mail <strong>cartelaespecial@gmail.com</strong> ou no grupo oficial.
+                <strong>5. Contato:</strong> Para dúvidas ou falar com a administração, entre em contato pelo e-mail <strong>cartelaespecial@gmail.com</strong> ou diretamente no grupo oficial.
               </p>
             </>
           ) : (
             <>
               <p>
-                <strong>1. Coleta de Informações:</strong> Esta pré-página não solicita dados pessoais confidenciais diretamente em formulários. Ao acessar o grupo do WhatsApp, os dados visíveis aos outros membros limitam-se ao perfil público configurado pelo próprio usuário no aplicativo WhatsApp.
+                <strong>1. Privacidade:</strong> Esta página não coleta dados pessoais sensíveis, não solicita preenchimento de cadastros e não armazena dados bancários.
               </p>
               <p>
-                <strong>2. Uso de Cookies e Métricas:</strong> Utilizamos identificadores de navegação (como tags de conversão do Kwai) estritamente para medir o volume de acessos e aprimorar a experiência de navegação e publicidade responsável.
+                <strong>2. Aplicativo WhatsApp:</strong> Ao entrar no grupo, seus dados de perfil (como nome e foto) seguem as configurações de privacidade que você mesmo escolheu no aplicativo WhatsApp.
               </p>
               <p>
-                <strong>3. Segurança e Direitos (LGPD):</strong> Respeitamos a legislação brasileira de proteção de dados (Lei nº 13.709/2018 - LGPD). Nenhuma informação de participantes é vendida ou transferida a terceiros não autorizados.
+                <strong>3. Métricas e Segurança:</strong> Utilizamos métricas básicas de tráfego estritamente para medir a quantidade de acessos à página, respeitando integralmente a LGPD (Lei Geral de Proteção de Dados).
               </p>
               <p>
-                <strong>4. Responsável pelo Tratamento:</strong> Cartelas Especiais. Para solicitações sobre privacidade ou remoção de contatos, escreva para <strong>cartelaespecial@gmail.com</strong>.
+                <strong>4. Contato Oficial:</strong> Em caso de dúvidas sobre privacidade, envie uma mensagem para <strong>cartelaespecial@gmail.com</strong>.
               </p>
             </>
           )}
