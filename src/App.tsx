@@ -36,22 +36,12 @@ export default function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // When on /grupo, fire the Kwai Pixel and redirect to WhatsApp
+  // When on /grupo, wait 1500ms to allow the Kwai pixel rule to process before redirecting to WhatsApp
   useEffect(() => {
     if (isGrupo) {
-      try {
-        const win = window as unknown as { kwaiq?: { page: () => void; track: (event: string) => void } };
-        if (win.kwaiq) {
-          win.kwaiq.page();
-          win.kwaiq.track('contentView');
-        }
-      } catch {
-        // ignore
-      }
-
       const timer = setTimeout(() => {
         window.location.href = WHATSAPP_GROUP_URL;
-      }, 700);
+      }, 1500);
 
       return () => clearTimeout(timer);
     }
@@ -67,20 +57,8 @@ export default function App() {
       colors: ['#22C55E', '#EAB308', '#FACC15', '#10B981', '#FFFFFF'],
     });
 
-    // 2. Track button click in Kwai Ads Pixel
-    try {
-      const win = window as unknown as { kwaiq?: { track: (event: string, params?: Record<string, unknown>) => void } };
-      if (win.kwaiq) {
-        win.kwaiq.track('buttonClick', { buttonName: 'Entrar_No_Grupo' });
-      }
-    } catch {
-      // ignore
-    }
-
-    // 3. Navigate directly to WhatsApp group URL (fast and seamless)
-    setTimeout(() => {
-      window.location.href = WHATSAPP_GROUP_URL;
-    }, 280);
+    // 2. Navegação completa para /grupo preservando todos os query params de atribuição
+    window.location.assign(`/grupo${window.location.search}`);
   };
 
   // If on /grupo route: render direct redirect screen
