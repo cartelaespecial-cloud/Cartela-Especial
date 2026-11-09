@@ -1,6 +1,6 @@
 {
   "name": "Cartelas Especiais - Comunidade Oficial",
-  "description": "Venha fazer parte da comunidade Cartelas Especiais e acompanhe nossas novidades pelo WhatsApp.",
+  "description": "Receba ofertas, promoções e achadinhos de produtos diretamente no seu WhatsApp.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

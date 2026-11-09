@@ -34,19 +34,19 @@ export const LegalModal: React.FC<LegalModalProps> = ({ type, onClose }) => {
           {type === 'terms' ? (
             <>
               <p>
-                <strong>1. Sobre a Comunidade:</strong> Esta página é um canal de acesso à nossa comunidade oficial no WhatsApp, criada exclusivamente para interação, convivência e compartilhamento de novidades e avisos entre os participantes.
+                <strong>1. Sobre o Grupo de Ofertas:</strong> Esta página é um canal de divulgação e acesso ao nosso grupo no WhatsApp, criado para compartilhar novidades, ofertas e achadinhos encontrados na internet entre os participantes.
               </p>
               <p>
-                <strong>2. Acesso Gratuito e Livre:</strong> O acesso ao grupo de WhatsApp é 100% gratuito e voluntário. Qualquer participante pode entrar ou sair do grupo quando desejar, sem custos ou obrigações.
+                <strong>2. Acesso Gratuito e Voluntário:</strong> O acesso ao grupo de WhatsApp é 100% gratuito e voluntário. Não cobramos mensalidades nem taxas de entrada. Qualquer participante pode sair a qualquer momento.
               </p>
               <p>
-                <strong>3. Regras de Convivência:</strong> É fundamental manter um ambiente respeitoso, ético e cordial. É proibido qualquer tipo de ofensa, preconceito, spam ou mensagens inadequadas no grupo.
+                <strong>3. Disponibilidade de Ofertas:</strong> As ofertas, preços e promoções divulgadas são de responsabilidade das lojas e plataformas de origem, estando sujeitas a alterações de valores e estoque sem aviso prévio.
               </p>
               <p>
-                <strong>4. Maioridade:</strong> A participação na comunidade é recomendada para maiores de 18 anos.
+                <strong>4. Regras de Convivência:</strong> É fundamental manter um ambiente respeitoso e cordial. É proibido qualquer tipo de ofensa, spam ou mensagens inadequadas no grupo.
               </p>
               <p>
-                <strong>5. Contato:</strong> Para dúvidas ou falar com a administração, entre em contato pelo e-mail <strong>cartelaespecial@gmail.com</strong> ou diretamente no grupo oficial.
+                <strong>5. Contato:</strong> Para dúvidas ou falar com os administradores, entre em contato pelo e-mail <strong>cartelaespecial@gmail.com</strong>.
               </p>
             </>
           ) : (
